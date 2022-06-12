@@ -5,7 +5,7 @@ import {
   Image
 } from 'react-native';
 
-const AppLoading = () => {
+const AppLoader = () => {
   return (
     <SafeAreaView style={styles.loadingContainer}>
       <Image
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AppLoading;
+export default AppLoader;

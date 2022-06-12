@@ -8,6 +8,9 @@ import {
   KeyboardAvoidingView,
   SafeAreaView
 } from 'react-native';
+import {
+  AppLoader,
+} from './src/components/index.js'
 import AppShell from './AppShell';
 
 export default function App() {
@@ -38,7 +41,7 @@ export default function App() {
         <SafeAreaView>
           <StatusBar translucent={true} />
           {
-            !fontsLoaded ? <AppLoading /> : <AppShell />
+            !fontsLoaded ? <AppLoader /> : <AppShell />
           }
         </SafeAreaView>
       </TouchableWithoutFeedback>
