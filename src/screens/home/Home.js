@@ -8,12 +8,14 @@ import {
   Keyboard,
   FlatList
 } from 'react-native';
-import Theme from './src/constants/Theme';
+import Theme from '../../constants/Theme';
 import {
-  Home
-} from './src/views/index'
+  Item,
+  TopAppBar,
+  InputBtn
+} from '../../components/index'
 
-export default function App() {
+export default function Home() {
   const [value,setValue] = useState('')
   const [tasks, setTasks] = useState([]);
 
@@ -39,16 +41,26 @@ export default function App() {
   );
 
   return (
-    <SafeAreaView
-      style={styles.container}
+    <View
     >
-      <StatusBar
-      translucent
-      animated
-      style='auto'
+      <TopAppBar />
+      <View 
+        style={styles.flatList}
+      >
+        <FlatList
+          style={styles.list}
+          data={tasks}
+          renderItem={renderItem}
+          keyExtractor={(i,index)=> index}
+        />
+      </View>
+      <InputBtn
+        value={value}
+        placeholder='Escribe una tarea'
+        handleOnChangeText={handleOnChangeText}
+        handleOnPress={handleOnPress}
       />
-      <Home />
-    </SafeAreaView>
+    </View>
   );
 }
 
