@@ -17,6 +17,7 @@ const AppShell = () => {
 const styles = StyleSheet.create({
   appShellContainer: {
     flex: 1,
+    justifyContent: 'center',
     marginTop: StatusBar.currentHeight,
   }
 })
