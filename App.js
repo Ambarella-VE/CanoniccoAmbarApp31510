@@ -1,12 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  useFonts
+} from 'expo-font'
+import { 
+  StyleSheet, 
+  StatusBar,
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+  SafeAreaView
+} from 'react-native';
+import AppShell from './AppShell';
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    NotoSansBlack: require('./assets/fonts/NotoSans-Black.ttf'),
+    NotoSansBlackItalic: require('./assets/fonts/NotoSans-BlackItalic.ttf'),
+    NotoSansBold: require('./assets/fonts/NotoSans-Bold.ttf'),
+    NotoSansBoldItalic: require('./assets/fonts/NotoSans-BoldItalic.ttf'),
+    NotoSansExtraBold: require('./assets/fonts/NotoSans-ExtraBold.ttf'),
+    NotoSansExtraBoldItalic: require('./assets/fonts/NotoSans-ExtraBoldItalic.ttf'),
+    NotoSansExtraLight: require('./assets/fonts/NotoSans-ExtraLight.ttf'),
+    NotoSansItalic: require('./assets/fonts/NotoSans-Italic.ttf'),
+    NotoSansLight: require('./assets/fonts/NotoSans-Light.ttf'),
+    NotoSansLightItalic: require('./assets/fonts/NotoSans-LightItalic.ttf'),
+    NotoSansMedium: require('./assets/fonts/NotoSans-Medium.ttf'),
+    NotoSansMediumItalic: require('./assets/fonts/NotoSans-MediumItalic.ttf'),
+    NotoSans: require('./assets/fonts/NotoSans-Regular.ttf'),
+    NotoSansSemiBold: require('./assets/fonts/NotoSans-SemiBold.ttf'),
+    NotoSansSemiBoldItalic: require('./assets/fonts/NotoSans-SemiBoldItalic.ttf'),
+    NotoSansThin: require('./assets/fonts/NotoSans-Thin.ttf'),
+    NotoSansThinItalic: require('./assets/fonts/NotoSans-ThinItalic.ttf')
+  });
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <KeyboardAvoidingView style={styles.container}>
+      <TouchableWithoutFeedback>
+        <SafeAreaView>
+          <StatusBar translucent={true} />
+          {
+            !fontsLoaded ? <AppLoading /> : <AppShell />
+          }
+        </SafeAreaView>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 
