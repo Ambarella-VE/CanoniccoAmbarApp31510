@@ -1,12 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
 import { 
   StyleSheet, 
   SafeAreaView,
-  View,
   Dimensions,
-  Keyboard,
-  FlatList
 } from 'react-native';
 import Theme from './src/constants/Theme';
 import {
@@ -14,29 +10,6 @@ import {
 } from './src/views/index'
 
 export default function App() {
-  const [value,setValue] = useState('')
-  const [tasks, setTasks] = useState([]);
-
-  const handleOnChangeText = (text) => {
-    setValue(text);
-    }
-  
-  const handleOnPress = () => {
-    if(value!=''){
-      const newTask = {
-        title: value,
-      }
-      const newTasks = tasks;
-      newTasks.push(newTask);
-      setTasks(newTasks);	
-      setValue('');
-      }
-      Keyboard.dismiss();
-  }
-
-  const renderItem = ( item ) => (
-    <Item item={item.item} />
-  );
 
   return (
     <SafeAreaView

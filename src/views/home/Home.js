@@ -27,6 +27,7 @@ export default function Home() {
     if(value!=''){
       const newTask = {
         title: value,
+        toDo: true
       }
       const newTasks = tasks;
       newTasks.push(newTask);
@@ -36,8 +37,32 @@ export default function Home() {
       Keyboard.dismiss();
   }
 
-  const renderItem = ( item ) => (
-    <Item item={item.item} />
+  const handleOnPressTask = (index) =>{
+    const newTasks = [...tasks]
+    const newTask = tasks[index]
+    newTasks.splice(index,1)
+    if (newTask.toDo){
+      newTasks.push(newTask)
+    } else {
+      newTasks.unshift(newTask)
+    }
+    newTask.toDo = !newTask.toDo;
+    setTasks(newTasks);
+  }
+
+  const handleOnDeleteTask = (index) =>{
+    const newTasks = [...tasks]
+    newTasks.splice(index,1)
+    setTasks(newTasks);
+  }
+
+  const renderItem = ( {item, index} ) => (
+    <Item 
+      item={item} 
+      index={index} 
+      handleOnPressTask={handleOnPressTask}
+      handleOnDeleteTask={handleOnDeleteTask}
+    />
   );
 
   return (
@@ -51,7 +76,7 @@ export default function Home() {
           style={styles.list}
           data={tasks}
           renderItem={renderItem}
-          keyExtractor={(i,index)=> index}
+          keyExtractor={(item,index)=> index.toString()}
         />
       </View>
       <InputBtn

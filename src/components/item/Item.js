@@ -1,50 +1,77 @@
 import React, {
-  useEffect
+  useState,
+  useEffect,
 } from 'react';
 import {
   View, 
   StyleSheet,
   Dimensions,
-  Text
+  Text,
+  TouchableWithoutFeedback
 } from 'react-native';
 import Theme from '../../constants/Theme'; 
 
-const Item = ({ item }) => {
+const Item = ({ 
+  item,
+  index,
+  handleOnPressTask,
+  handleOnDeleteTask
+}) => {
 
+  const [textDecorationLine, setTextDecorationLine] = useState('none');
+
+  useEffect(() => {
+    if(item.toDo){
+      setTextDecorationLine('none');
+    }else{
+      setTextDecorationLine('line-through');
+    }
+  }, [item.toDo]);
+
+  const styles = StyleSheet.create({
+    view: {
+      height:80,
+      flex:1,
+      backgroundColor: Theme.colors.dark.primary,
+      marginVertical: 8,
+      marginHorizontal: 16,
+      width: Dimensions.get('window').width - 32,
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      flexDirection: 'row',
+      padding: 16,
+      borderRadius:16,
+  
+  
+    },
+    text: {
+      color: Theme.colors.dark.onSurface,
+      fontSize: 16,
+      textAlign: 'left',
+      textDecorationLine: textDecorationLine,
+    },
+  
+  })
   
   return(
     <View style={styles.view}>
-      <Text style={styles.text}>{item.title}</Text>
-      <View style={styles.text}>
-        <Text>Icon</Text>
-      </View>
+      <TouchableWithoutFeedback
+        onPress={()=>handleOnPressTask(index)}
+      >
+        <Text style={styles.text}>{item.title}</Text>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback 
+      style={styles.text}
+      onPress={()=>handleOnDeleteTask(index)}
+      >
+        <Text>{index}</Text>
+      </TouchableWithoutFeedback>
     </View>
   )
 
 }
 
-const styles = StyleSheet.create({
-  view: {
-    height:80,
-    flex:1,
-    backgroundColor: Theme.colors.dark.primary,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    width: Dimensions.get('window').width - 32,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    padding: 16,
-    borderRadius:16,
 
 
-  },
-  text: {
-    color: Theme.colors.dark.onSurface,
-    fontSize: 16,
-    textAlign: 'left'
-  },
-
-})
 
 export default Item;
