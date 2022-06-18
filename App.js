@@ -39,7 +39,6 @@ export default function App() {
     <KeyboardAvoidingView style={styles.container}>
       <TouchableWithoutFeedback>
         <SafeAreaView>
-          <StatusBar translucent={true} />
           {
             !fontsLoaded ? <AppLoader /> : <AppShell />
           }

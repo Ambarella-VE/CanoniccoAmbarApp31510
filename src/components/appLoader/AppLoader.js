@@ -2,7 +2,8 @@ import React from 'react';
 import {
   StyleSheet,
   SafeAreaView,
-  Image
+  Image,
+  Dimensions
 } from 'react-native';
 
 const AppLoader = () => {
@@ -19,7 +20,12 @@ const AppLoader = () => {
 
 const styles = StyleSheet.create({
   loadingContainer: {
-    backgroundColor: '#000000'
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#E91E63',
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width
   }
 })
 
