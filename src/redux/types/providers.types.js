@@ -1,0 +1,4 @@
+export const providersTypes = {
+  SELECT_PROVIDER: 'SELECT_PROVIDER',
+  FILTERED_PROVIDERS: 'FILTERED_PROVIDERS',
+}
